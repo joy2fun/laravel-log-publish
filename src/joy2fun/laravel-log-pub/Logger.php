@@ -17,8 +17,10 @@ class Logger
         $with = array_merge([
             'format' => null,
             'connection' => 'default',
+            'quiet' => false,
             'max_trace_length' => 1024,
         ], $config['with']);
+
         $level = MonologLogger::DEBUG;
 
         if (isset($config['level'])) {
@@ -30,7 +32,8 @@ class Logger
 
         $handler = new Handler(
             $level,
-            $connection = $with['connection']
+            $with['connection'],
+            $with['quiet']
         );
         $handler->setFormatter(
             new Formatter(
