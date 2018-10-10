@@ -14,8 +14,8 @@ Add a custom logger channel to `config/logging.php` :
 
 ```
 'pub' => [
-		'driver' => 'custom',
-		'via' => \Joy2fun\RedisPubLogger\Logger::class
+    'driver' => 'custom',
+    'via' => \Joy2fun\RedisPubLogger\Logger::class
 ],
 ```
 
