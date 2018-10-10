@@ -13,7 +13,8 @@ class Subscribe extends Command
      * @var string
      */
     protected $signature = 'redis:subscribe 
-                            {channel=laravel-log-channel : Redis channel}';
+                            {channel=laravel-log-channel : Redis channel}
+                            {--c|connection=default : Redis connection name}';
 
     /**
      * The console command description.
@@ -39,7 +40,9 @@ class Subscribe extends Command
      */
     public function handle()
     {
-        Redis::subscribe([$this->argument('channel')], function ($message) {
+        $channel = $this->argument('channel');
+        $connection = $this->option('connection');
+        Redis::connection($connection)->subscribe([$channel], function ($message) {
             echo $message;
         });
     }

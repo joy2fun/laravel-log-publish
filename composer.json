@@ -1,5 +1,6 @@
 {
   "name": "joy2fun/laravel-log-pub",
+  "description": "Logging to Redis channel for Laravel.",
   "require-dev": {
     "laravel/laravel": "^5.6"
   },

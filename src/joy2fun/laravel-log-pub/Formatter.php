@@ -6,13 +6,13 @@ use Monolog\Formatter\LineFormatter;
 
 class Formatter extends LineFormatter
 {
-    private $maxTracesLength;
+    private $maxTraceLength;
 
-    public function __construct($format = null, $maxTracesLength = 1024)
+    public function __construct($format = null, $maxTraceLength = 1024)
     {
         parent::__construct($format = null, null, true, true);
 
-        if ($this->maxTracesLength = $maxTracesLength) {
+        if ($this->maxTraceLength = $maxTraceLength) {
             $this->includeStacktraces();
         }
     }
@@ -33,7 +33,7 @@ class Formatter extends LineFormatter
 
         $str = '[object] ('.get_class($e).'(code: '.$e->getCode().'): '.$e->getMessage().' at '.$e->getFile().':'.$e->getLine().$previousText.')';
         if ($this->includeStacktraces) {
-            $str .= "\n[stacktrace]\n". substr($e->getTraceAsString(), 0, $this->maxTracesLength)."\n";
+            $str .= "\n[stacktrace]\n". substr($e->getTraceAsString(), 0, $this->maxTraceLength)."\n";
         }
 
         return $str;
