@@ -19,8 +19,17 @@ class Logger
             'connection' => 'default',
             'max_trace_length' => 1024,
         ], $config['with']);
+        $level = MonologLogger::DEBUG;
+
+        if (isset($config['level'])) {
+            $levelName = "Monolog\Logger::" . strtoupper($config['level']);
+            if (defined($levelName)) {
+                $level = constant($levelName);
+            }
+        }
+
         $handler = new Handler(
-            $level = MonologLogger::DEBUG,
+            $level,
             $connection = $with['connection']
         );
         $handler->setFormatter(
