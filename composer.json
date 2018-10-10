@@ -1,0 +1,18 @@
+{
+  "name": "joy2fun/laravel-log-pub",
+  "require-dev": {
+    "laravel/laravel": "^5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Joy2fun\\RedisPubLogger\\": "src/joy2fun/laravel-log-pub"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Joy2fun\\RedisPubLogger\\ServiceProvider"
+      ]
+    }
+  }
+}
