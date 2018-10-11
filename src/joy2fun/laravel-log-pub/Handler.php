@@ -22,20 +22,18 @@ class Handler extends AbstractProcessingHandler
 
     protected function write(array $record)
     {
-        if ($this->skip) {
-            return ;
-        }
-
-        try {
-            Redis::connection($this->connection)
-                ->publish("laravel-log-channel", $record['formatted']);
-        } catch (InvalidArgumentException $e) {
-            throw $e;
-        } catch (Exception $e) {
-            if ($this->quiet) {
-                $this->skip = true;
-            } else {
+        if (! $this->skip) {
+            try {
+                Redis::connection($this->connection)
+                    ->publish("laravel-log-channel", $record['formatted']);
+            } catch (InvalidArgumentException $e) {
                 throw $e;
+            } catch (Exception $e) {
+                if ($this->quiet) {
+                    $this->skip = true;
+                } else {
+                    throw $e;
+                }
             }
         }
     }

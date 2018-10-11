@@ -19,19 +19,10 @@ class Logger
             'connection' => 'default',
             'quiet' => false,
             'max_trace_length' => 1024,
-        ], $config['with']);
-
-        $level = MonologLogger::DEBUG;
-
-        if (isset($config['level'])) {
-            $levelName = "Monolog\Logger::" . strtoupper($config['level']);
-            if (defined($levelName)) {
-                $level = constant($levelName);
-            }
-        }
+        ], $config['with'] ?? []);
 
         $handler = new Handler(
-            $level,
+            $this->getLevel($config['level'] ?? null),
             $with['connection'],
             $with['quiet']
         );
@@ -44,4 +35,14 @@ class Logger
         return new MonologLogger('PUB', [$handler]);
     }
 
+    public function getLevel($level) {
+        if ($level) {
+            $levelName = "Monolog\Logger::" . strtoupper($level);
+            if (defined($levelName)) {
+                return constant($levelName);
+            }
+        }
+
+        return MonologLogger::DEBUG;
+    }
 }

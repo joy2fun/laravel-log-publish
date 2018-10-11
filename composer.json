@@ -2,12 +2,22 @@
   "name": "joy2fun/laravel-log-pub",
   "description": "Logging to Redis channel for Laravel.",
   "require-dev": {
-    "laravel/laravel": "^5.6"
+    "laravel/laravel": "^5.6",
+    "phpunit/phpunit": "^7.4",
+    "mockery/mockery": "^1.2"
   },
   "autoload": {
     "psr-4": {
       "Joy2fun\\RedisPubLogger\\": "src/joy2fun/laravel-log-pub"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit --colors=always"
   },
   "extra": {
     "laravel": {
