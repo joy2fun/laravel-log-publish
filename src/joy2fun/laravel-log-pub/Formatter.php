@@ -10,7 +10,7 @@ class Formatter extends LineFormatter
 
     public function __construct($format = null, $maxTraceLength = 1024)
     {
-        parent::__construct($format = null, null, true, true);
+        parent::__construct($format, null, true, true);
 
         if ($this->maxTraceLength = $maxTraceLength) {
             $this->includeStacktraces();
