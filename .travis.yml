@@ -1,0 +1,16 @@
+language: php
+
+cache:
+  directories:
+    - vendor
+    - $HOME/.composer/cache
+
+php:
+  - 7
+
+install:
+  - composer install
+
+script:
+  vendor/bin/phpunit
+
